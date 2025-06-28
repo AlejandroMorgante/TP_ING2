@@ -3,6 +3,7 @@ name = "tp-bases-datos"
 version = "0.1.0"
 description = "Trabajo práctico con MySQL, MongoDB y Neo4j"
 authors = ["Grupo 11"]
+package-mode = false
 
 [tool.poetry.dependencies]
 python = "^3.10"
