@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "tp-bases-datos"
+version = "0.1.0"
+description = "Trabajo práctico con MySQL, MongoDB y Neo4j"
+authors = ["Grupo 11"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pymysql = "^1.1"
+pymongo = "^4.7"
+neo4j = "^5.20"
+jupyter = "^1.0.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
