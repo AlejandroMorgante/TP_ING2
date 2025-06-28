@@ -1,5 +1,3 @@
-
-
 import pymysql
 
 def explorar_mysql():

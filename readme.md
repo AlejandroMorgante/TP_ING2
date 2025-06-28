@@ -57,12 +57,31 @@ Este notebook permite verificar que los datos fueron cargados correctamente en l
 Neo4j no ejecuta automáticamente el archivo `init.cypher`, pero podés cargarlo fácilmente con el siguiente comando:
 
 ```bash
-poetry run python init/neo4j/init_neo.py
+poetry run python init_neo.py
 ```
 
 Este script se conecta a Neo4j, ejecuta todos los comandos del archivo Cypher y luego imprime un resumen con la cantidad de nodos y relaciones cargadas.
 
 ---
+
+## ♻️ Cómo reiniciar los servicios
+
+Si realizás modificaciones en los scripts de inicialización (`init.sql`, `init.js`, etc.), necesitás reiniciar los contenedores y eliminar los volúmenes persistentes para que las bases se recreen desde cero:
+
+```bash
+docker-compose down -v
+docker-compose up -d
+```
+
+Una vez levantado todo, podés verificar que los datos se hayan cargado correctamente ejecutando los siguientes scripts:
+
+```bash
+poetry run python review_sql.py
+poetry run python review_mongo.py
+poetry run python review_neo4j.py
+```
+
+Todos listarán las tablas, colecciones o nodos y algunos datos de ejemplo para confirmar que todo quedó inicializado correctamente.
 
 ## 📁 Estructura del proyecto
 
@@ -73,7 +92,12 @@ init/
 └── neo4j/init.cypher
 
 notebooks/
-└── exploracion.ipynb
+└── review.ipynb
+
+review_mongo.py
+init_neo.py
+review_neo4j.py
+review_sql.py
 
 pyproject.toml
 docker-compose.yml

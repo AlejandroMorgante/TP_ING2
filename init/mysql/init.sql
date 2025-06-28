@@ -36,7 +36,7 @@ tipo_de_zona VARCHAR(50),
 
 id_pais INT,
 
-FOREIGN KEY (id_pais) REFERENCES pais(id_pais)
+FOREIGN KEY (id_pais) REFERENCES Pais(id_pais)
 
 );
 
@@ -52,7 +52,7 @@ estado VARCHAR(50),
 
 precio DECIMAL(10,2),
 
-FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)
+FOREIGN KEY (id_cliente) REFERENCES Cliente(id_cliente)
 
 );
 
@@ -66,7 +66,7 @@ nombre VARCHAR(100),
 
 pasaporte VARCHAR(50),
 
-FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva)
+FOREIGN KEY (id_reserva) REFERENCES Reserva(id_reserva)
 
 );
 
@@ -88,9 +88,9 @@ aerolinea VARCHAR(100),
 
 precio DECIMAL(10,2),
 
-FOREIGN KEY (origen) REFERENCES ciudad(id_ciudad),
+FOREIGN KEY (origen) REFERENCES Ciudad(id_ciudad),
 
-FOREIGN KEY (destino) REFERENCES ciudad(id_ciudad)
+FOREIGN KEY (destino) REFERENCES Ciudad(id_ciudad)
 
 );
 
@@ -110,7 +110,7 @@ disponibilidad VARCHAR(30),
 
 id_ciudad INT,
 
-FOREIGN KEY (id_ciudad) REFERENCES ciudad(id_ciudad)
+FOREIGN KEY (id_ciudad) REFERENCES Ciudad(id_ciudad)
 
 );
 
@@ -136,7 +136,7 @@ PRIMARY KEY (id_paquete, id_vuelo),
 
 FOREIGN KEY (id_paquete) REFERENCES PaqueteTuristico(id_paquete),
 
-FOREIGN KEY (id_vuelo) REFERENCES vuelo(id_vuelo)
+FOREIGN KEY (id_vuelo) REFERENCES Vuelo(id_vuelo)
 
 );
 
@@ -150,7 +150,7 @@ PRIMARY KEY (id_paquete, id_hotel),
 
 FOREIGN KEY (id_paquete) REFERENCES PaqueteTuristico(id_paquete),
 
-FOREIGN KEY (id_hotel) REFERENCES hotel(id_hotel)
+FOREIGN KEY (id_hotel) REFERENCES Hotel(id_hotel)
 
 );
 
@@ -168,7 +168,7 @@ fecha DATE,
 
 estado VARCHAR(50),
 
-FOREIGN KEY (id_reserva) REFERENCES reserva(id_reserva)
+FOREIGN KEY (id_reserva) REFERENCES Reserva(id_reserva)
 
 );
 
@@ -213,3 +213,45 @@ FOREIGN KEY (id_reserva) REFERENCES Reserva(id_reserva),
 FOREIGN KEY (id_paquete) REFERENCES PaqueteTuristico(id_paquete)
 
 );
+
+INSERT INTO Cliente (nombre, direccion, telefono, correo)
+VALUES ('Juan Pérez', 'Av. Siempreviva 123', '123456789', 'juan.perez@email.com');
+
+INSERT INTO Pais (nombre, codigo_iso, continente)
+VALUES ('México', 'MX', 'América');
+
+INSERT INTO Ciudad (nombre, codigo_postal, tipo_de_zona, id_pais)
+VALUES ('Cancún', '77500', 'tropical', 1);
+
+INSERT INTO Reserva (id_cliente, fecha_rcreacion, estado, precio)
+VALUES (1, '2024-07-01', 'confirmada', 2000.00);
+
+INSERT INTO Pasajero (id_reserva, nombre, pasaporte)
+VALUES (1, 'Luis Gómez', 'AB123456');
+
+INSERT INTO Vuelo (numero_vuelo, origen, destino, fecha_hora_salida, fecha_hora_llegada, aerolinea, precio)
+VALUES ('AR123', 1, 1, '2024-07-01 08:00:00', '2024-07-01 12:00:00', 'Aerolíneas Argentinas', 600.00);
+
+INSERT INTO Hotel (nombre, estrellas, tipo_habitacion, precio, disponibilidad, id_ciudad)
+VALUES ('Hotel Paraíso', 5, 'suite', 90.00, 'disponible', 1);
+
+INSERT INTO PaqueteTuristico (nombre, descripcion, precio_total)
+VALUES ('Paquete Caribe', '7 días all inclusive', 2000.00);
+
+INSERT INTO Paquete_Vuelo (id_paquete, id_vuelo)
+VALUES (1, 1);
+
+INSERT INTO Paquete_Hotel (id_paquete, id_hotel)
+VALUES (1, 1);
+
+INSERT INTO Pago (id_reserva, metodo_de_pago, monto, fecha, estado)
+VALUES (1, 'tarjeta', 2000.00, '2024-07-01', 'aprobado');
+
+INSERT INTO Reserva_Hotel (id_reserva, id_hotel)
+VALUES (1, 1);
+
+INSERT INTO Reserva_Vuelo (id_reserva, id_vuelo)
+VALUES (1, 1);
+
+INSERT INTO Reserva_Paquete (id_reserva, id_paquete)
+VALUES (1, 1);
