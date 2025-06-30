@@ -68,6 +68,29 @@ def tipos_alojamiento_mas_solicitados():
 
     client.close()
 
+
+def contar_propiedades_desde_fecha(fecha_str):
+    from datetime import datetime
+    import pytz
+
+    try:
+        fecha_iso = datetime.strptime(fecha_str, "%Y-%m-%d").replace(tzinfo=pytz.UTC)
+    except ValueError:
+        print("Formato de fecha inválido. Usá 'yyyy-mm-dd'.")
+        return
+
+    client = MongoClient("mongodb://localhost:27017")
+    db = client["test"]
+
+    count = db.propiedades.count_documents({
+        "fechaAlta": { "$gte": fecha_iso }
+    })
+
+    print(f"\nCantidad de propiedades con fechaAlta desde {fecha_str}: {count}")
+
+    client.close()
+
 if __name__ == "__main__":
     explorar_mongo()
     consulta_alojamientos_baratos_o_centrico()
+    contar_propiedades_desde_fecha("2025-06-01")
