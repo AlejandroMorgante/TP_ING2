@@ -14,6 +14,7 @@ def explorar_mongo():
 
     client.close()
 
+
 def consulta_alojamientos_baratos_o_centrico():
     client = MongoClient("mongodb://localhost:27017")
     db = client["test"]
@@ -33,6 +34,37 @@ def consulta_alojamientos_baratos_o_centrico():
         precio = doc.get("precio_por_noche", "N/A")
         zona = doc.get("zona", "N/A")
         print(f"- Tipo: {tipo} | Precio: {precio} | Zona: {zona}")
+
+def tipos_alojamiento_mas_solicitados():
+    client = MongoClient("mongodb://localhost:27017")
+    db = client["test"]
+
+    print("\nTipos de alojamiento más solicitados:")
+
+    pipeline = [
+        {
+            "$project": {
+                "tipo_habitacion": {
+                    "$ifNull": ["$paquete.hotel.tipo_habitacion", "$hotel.tipo_habitacion"]
+                }
+            }
+        },
+        {
+            "$group": {
+                "_id": "$tipo_habitacion",
+                "total": { "$sum": 1 }
+            }
+        },
+        { "$sort": { "total": -1 } }
+    ]
+
+    resultados = db.reservas.aggregate(pipeline)
+
+    for doc in resultados:
+        tipo = doc["_id"]
+        total = doc["total"]
+        print(f"- {tipo}: {total} reservas")
+
 
     client.close()
 
