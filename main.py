@@ -1,13 +1,13 @@
 import os
 
 def ejecutar_mongo(caso):
-    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_mongo.py --caso {caso}")
+    os.system(f"C:\\Users\\d78650\\AppData\\Roaming\\Python\\Scripts\\poetry.exe run python review_mongo.py --caso {caso}")
 
 def ejecutar_sql(caso):
-    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_sql.py --caso {caso}")
+    os.system(f"C:\\Users\\d78650\\AppData\\Roaming\\Python\\Scripts\\poetry.exe run python review_sql.py --caso {caso}")
 
 def ejecutar_neo4j(caso):
-    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_neo4j.py --caso {caso}")
+    os.system(f"C:\\Users\\d78650\\AppData\\Roaming\\Python\\Scripts\\poetry.exe run python review_neo4j.py --caso {caso}")
 
 
 def mostrar_menu():
@@ -20,10 +20,6 @@ def mostrar_menu():
         print("5. Caso 5 - Reservas en destinos tropicales con +4 estrellas (Neo4j)")
         print("6. Caso 6 - Alojamientos < $100 o en zonas céntricas (MongoDB)")
         print("7. Caso 1 SQL Server")
-        print("8. Caso 2 SQL Server")
-        print("9. Caso 3 SQL Server")
-        print("10. Caso 4 SQL Server")
-        print("11. Caso 6 SQL Server")
         print("0. Salir")
 
         opcion = input("Seleccione una opción: ")
@@ -42,14 +38,6 @@ def mostrar_menu():
             ejecutar_mongo("6")
         elif opcion == "7":
             ejecutar_sql("1")
-        elif opcion == "8":
-            ejecutar_sql("2")
-        elif opcion == "9":
-            ejecutar_sql("3")
-        elif opcion == "10":
-            ejecutar_sql("4")
-        elif opcion == "11":
-            ejecutar_sql("6")
         elif opcion == "0":
             break
         else:

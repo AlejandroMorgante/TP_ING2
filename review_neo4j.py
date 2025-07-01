@@ -6,10 +6,10 @@ def caso_5():
     with driver.session() as session:
         print("\nReservas en destinos tropicales con más de 4 estrellas:")
         query = """
-        MATCH (r:Reserva)-[:INCLUYE]->(h:Hotel)
-        WHERE h.zona = 'tropical' AND h.estrellas > 4
-        RETURN h.nombre AS hotel, count(r) AS reservas
-        ORDER BY reservas DESC;
+        MATCH (r:Reserva)-[:INCLUYE_HOTEL]->(h:Hotel)-[:UBICADO_EN]->(c:Ciudad)
+        WHERE h.estrellas > 4 AND c.tropical = true
+        RETURN h.nombre AS hotel, count(DISTINCT r) AS reservas
+        ORDER BY reservas DESC
         """
         result = session.run(query)
         for row in result:

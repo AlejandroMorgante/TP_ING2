@@ -13,12 +13,12 @@ def conectar():
 def caso_1():
     conn = conectar()
     with conn.cursor() as cursor:
-        print("\nReservas diarias por destino:")
+        print("\nReservas diarias (por fecha):")
         cursor.execute("""
-            SELECT fecha_creacion, destino, COUNT(*)
-            FROM reservas
-            GROUP BY fecha_creacion, destino
-            ORDER BY fecha_creacion;
+            SELECT fecha_rcreacion, COUNT(*) as total
+            FROM Reserva
+            GROUP BY fecha_rcreacion
+            ORDER BY fecha_rcreacion;
         """)
         for row in cursor.fetchall():
             print(row)
