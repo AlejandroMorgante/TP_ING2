@@ -1,38 +1,40 @@
-db.propiedades.drop();
+// init/mongo/init.js
 
-db.propiedades.insertMany([
+// Colección: propiedades
+const propiedades = [
+  { nombre: "Hostel Centro", precio: 80, zona: "centro", fecha_agregado: new Date() },
+  { nombre: "Cabaña Norte", precio: 120, zona: "rural", fecha_agregado: new Date(new Date().setDate(new Date().getDate() - 40)) },
+  { nombre: "Suite Vista Mar", precio: 200, zona: "tropical", fecha_agregado: new Date() },
+  { nombre: "Depto Económico", precio: 65, zona: "centro", fecha_agregado: new Date() },
+];
+
+// Colección: reservas
+const reservas = [
   {
-    nombre: "Hotel Paraiso",
-    tipoAlojamiento: "estándar",
-    ubicacion: { ciudad: "Cartagena", pais: "Colombia" },
-    fechaAlta: ISODate("2025-06-10T12:00:00Z"),
-    estrellas: 4,
-    precioNoche: 150
+    fecha_creacion: "2024-06-01",
+    vuelo: { destino: "Brasil" },
+    hotel: { tipo_habitacion: "doble", zona: "tropical" }
   },
   {
-    nombre: "Depto Centro Madrid",
-    tipoAlojamiento: "estándar",
-    ubicacion: { ciudad: "Madrid", pais: "España" },
-    fechaAlta: ISODate("2025-06-15T09:30:00Z"),
-    estrellas: null,
-    precioNoche: 80
+    fecha_creacion: "2024-06-01",
+    vuelo: { destino: "Brasil" },
+    hotel: { tipo_habitacion: "suite", zona: "centro" }
   },
   {
-    nombre: "Hostal Andino",
-    tipoAlojamiento: "doble",
-    ubicacion: { ciudad: "Cusco", pais: "Perú" },
-    fechaAlta: ISODate("2025-06-18T17:45:00Z"),
-    estrellas: 2,
-    precioNoche: 25
+    fecha_creacion: "2024-06-02",
+    vuelo: { destino: "Chile" },
+    hotel: { tipo_habitacion: "estándar", zona: "sur" }
   },
   {
-    nombre: "Hostal Viejo",
-    tipoAlojamiento: "suite",
-    ubicacion: { ciudad: "Cusco", pais: "Perú" },
-    fechaAlta: ISODate("2010-06-18T17:45:00Z"),
-    estrellas: 2,
-    precioNoche: 25
+    fecha_creacion: "2024-06-03",
+    vuelo: { destino: "Argentina" },
+    paquete: { hotel: { tipo_habitacion: "doble" } },
+    hotel: { tipo_habitacion: null, zona: "centro" }
   }
-]);
+];
 
-db.propiedades.createIndex({ fechaAlta: -1 });
+db.createCollection("propiedades");
+db.createCollection("reservas");
+
+db.propiedades.insertMany(propiedades);
+db.reservas.insertMany(reservas);
