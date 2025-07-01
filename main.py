@@ -24,6 +24,9 @@ def caso_uso_4():
     pais = input("Ingresá el país para contar las reservas: ")
     os.system(f'poetry run python -c "from review_mongo import areas_demandadas_por_pais; areas_demandadas_por_pais(\'{pais}\')"')
 
+def caso_uso_5():
+    os.system("poetry run python -c \"from review_neo4j import reservas_tropicales_cuatro_estrellas; reservas_tropicales_cuatro_estrellas()\"")
+
 def caso_uso_6():
     os.system("poetry run python -c \"from review_mongo import consulta_alojamientos_baratos_o_centrico; consulta_alojamientos_baratos_o_centrico()\"")
 
@@ -34,7 +37,7 @@ def mostrar_menu():
         print("2. CU2 - Qué tipos de alojamientos son más solicitados por los usuarios")
         print("3. CU3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
         print("4. CU4 - Cuáles son las áreas más demandadas en un país específico")
-        print("5. CU5 - ")
+        print("5. CU5 - Reservas realizadas en destinos tropicales y con más de 4 estrellas")
         print("6. CU6 - Qué tipos de alojamiento tienen precios por noche < 100 o están ubicados en zonas céntricas")
         print("---------------------------------------------")
         print("7. Ver datos en MySQL")
@@ -53,8 +56,7 @@ def mostrar_menu():
         elif opcion == "4":
             caso_uso_4()
         elif opcion == "5":
-            #caso_uso_5()
-            continue
+            caso_uso_5()
         elif opcion == "6":
             caso_uso_6()
         elif opcion == "7":
