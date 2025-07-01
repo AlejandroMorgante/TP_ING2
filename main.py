@@ -1,13 +1,13 @@
 import os
 
 def ejecutar_mongo(caso):
-    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_mongo.py --caso {caso}")
+    os.system(f"poetry run python review_mongo.py --caso {caso}")
 
 def ejecutar_sql(caso):
-    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_sql.py --caso {caso}")
+    os.system(f"poetry run python review_sql.py --caso {caso}")
 
 def ejecutar_neo4j(caso):
-    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_neo4j.py --caso {caso}")
+    os.system(f"poetry run python review_neo4j.py --caso {caso}")
 
 
 def mostrar_menu():
