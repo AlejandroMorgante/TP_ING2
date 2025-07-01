@@ -1,37 +1,55 @@
 import os
 
-def ejecutar_sql():
-    os.system("poetry run python review_sql.py")
+def ejecutar_mongo(caso):
+    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_mongo.py --caso {caso}")
 
-def ejecutar_mongo():
-    os.system("poetry run python review_mongo.py")
+def ejecutar_sql(caso):
+    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_sql.py --caso {caso}")
 
-def ejecutar_neo4j():
-    os.system("poetry run python review_neo4j.py")
+def ejecutar_neo4j(caso):
+    os.system(f"C:\\Users\\d78650\\AppData\\Local\\Programs\\Python\\Python313\\python.exe review_neo4j.py --caso {caso}")
 
-
-def caso_uso_3():
-    fecha = input("Ingresá la fecha desde la cual contar (formato yyyy-mm-dd): ")
-    os.system(f'poetry run python -c "from review_mongo import contar_propiedades_desde_fecha; contar_propiedades_desde_fecha(\'{fecha}\')"')
 
 def mostrar_menu():
     while True:
         print("\n===== MENÚ DE CASOS DE USO =====")
-        print("1. Ver datos en MySQL")
-        print("2. Ver datos en MongoDB")
-        print("3. Ver datos en Neo4j")
-        print("4. Caso de uso 3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
+        print("1. Caso 1 - Reservas diarias por destino (MongoDB)")
+        print("2. Caso 2 - Tipos de alojamiento más solicitados (MongoDB)")
+        print("3. Caso 3 - Propiedades agregadas recientemente (MongoDB)")
+        print("4. Caso 4 - Áreas más demandadas en un país (MongoDB)")
+        print("5. Caso 5 - Reservas en destinos tropicales con +4 estrellas (Neo4j)")
+        print("6. Caso 6 - Alojamientos < $100 o en zonas céntricas (MongoDB)")
+        print("7. Caso 1 SQL Server")
+        print("8. Caso 2 SQL Server")
+        print("9. Caso 3 SQL Server")
+        print("10. Caso 4 SQL Server")
+        print("11. Caso 6 SQL Server")
         print("0. Salir")
+
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            ejecutar_sql()
+            ejecutar_mongo("1")
         elif opcion == "2":
-            ejecutar_mongo()
+            ejecutar_mongo("2")
         elif opcion == "3":
-            ejecutar_neo4j()
+            ejecutar_mongo("3")
         elif opcion == "4":
-            caso_uso_3()
+            ejecutar_mongo("4")
+        elif opcion == "5":
+            ejecutar_neo4j("5")
+        elif opcion == "6":
+            ejecutar_mongo("6")
+        elif opcion == "7":
+            ejecutar_sql("1")
+        elif opcion == "8":
+            ejecutar_sql("2")
+        elif opcion == "9":
+            ejecutar_sql("3")
+        elif opcion == "10":
+            ejecutar_sql("4")
+        elif opcion == "11":
+            ejecutar_sql("6")
         elif opcion == "0":
             break
         else:
