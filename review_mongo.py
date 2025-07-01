@@ -64,6 +64,8 @@ def tipos_alojamiento_mas_solicitados():
 
     for doc in resultados:
         tipo = doc["_id"]
+        if tipo is None:
+            continue  # Ignorar registros sin hotel reservado
         total = doc["total"]
         print(f"- {tipo}: {total} reservas")
 
@@ -124,8 +126,10 @@ def reservas_diarias_por_destino():
     resultados = db.reservas.aggregate(pipeline)
 
     for doc in resultados:
-        fecha = doc["_id"]["fecha"]
-        destino = doc["_id"]["destino"]
+        fecha = doc["_id"].get("fecha", "Sin fecha registrada")
+        destino = doc["_id"].get("destino")
+        if destino is None:
+            continue # Ignorar registros sin vuelo reservado
         total = doc["total_reservas"]
         print(f"- Fecha: {fecha} | Destino: {destino} | Total reservas: {total}")
 

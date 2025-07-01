@@ -1,4 +1,5 @@
 import os
+import time
 
 def ejecutar_sql():
     os.system("poetry run python review_sql.py")
@@ -47,6 +48,8 @@ def mostrar_menu():
             break
         else:
             print("Opción no válida. Intente nuevamente.")
+
+        time.sleep(2)
 
 if __name__ == "__main__":
     mostrar_menu()
