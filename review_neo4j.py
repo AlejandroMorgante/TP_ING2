@@ -1,5 +1,3 @@
-
-
 from neo4j import GraphDatabase
 
 def explorar_neo4j():

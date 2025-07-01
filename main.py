@@ -20,36 +20,49 @@ def caso_uso_3():
     fecha = input("Ingresá la fecha desde la cual contar (formato yyyy-mm-dd): ")
     os.system(f'poetry run python -c "from review_mongo import contar_propiedades_desde_fecha; contar_propiedades_desde_fecha(\'{fecha}\')"')
 
+def caso_uso_4():
+    pais = input("Ingresá el país para contar las reservas: ")
+    os.system(f'poetry run python -c "from review_mongo import areas_demandadas_por_pais; areas_demandadas_por_pais(\'{pais}\')"')
+
 def caso_uso_6():
     os.system("poetry run python -c \"from review_mongo import consulta_alojamientos_baratos_o_centrico; consulta_alojamientos_baratos_o_centrico()\"")
 
 def mostrar_menu():
     while True:
         print("\n===== MENÚ DE CASOS DE USO =====")
-        print("1. Ver datos en MySQL")
-        print("2. Ver datos en MongoDB")
-        print("3. Ver datos en Neo4j")
-        print("4. CU1 - Cuántas reservas se realizan diariamente por destino")
-        print("5. CU2 - Qué tipos de alojamientos son más solicitados por los usuarios")
-        print("6. CU3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
-        print("7. CU6 - ¿Qué tipos de alojamiento tienen precios por noche < 100 o están ubicados en zonas céntricas")
+        print("1. CU1 - Cuántas reservas se realizan diariamente por destino")
+        print("2. CU2 - Qué tipos de alojamientos son más solicitados por los usuarios")
+        print("3. CU3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
+        print("4. CU4 - Cuáles son las áreas más demandadas en un país específico")
+        print("5. CU5 - ")
+        print("6. CU6 - Qué tipos de alojamiento tienen precios por noche < 100 o están ubicados en zonas céntricas")
+        print("---------------------------------------------")
+        print("7. Ver datos en MySQL")
+        print("8. Ver datos en MongoDB")
+        print("9. Ver datos en Neo4j")
+        print("---------------------------------------------")
         print("0. Salir")
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            ejecutar_sql()
-        elif opcion == "2":
-            ejecutar_mongo()
-        elif opcion == "3":
-            ejecutar_neo4j()
-        elif opcion == "4":
             caso_uso_1()
-        elif opcion == "5":
+        elif opcion == "2":
             caso_uso_2()
-        elif opcion == "6":
+        elif opcion == "3":
             caso_uso_3()
-        elif opcion == "7":
+        elif opcion == "4":
+            caso_uso_4()
+        elif opcion == "5":
+            #caso_uso_5()
+            continue
+        elif opcion == "6":
             caso_uso_6()
+        elif opcion == "7":
+            ejecutar_sql()
+        elif opcion == "8":
+            ejecutar_mongo()
+        elif opcion == "9":
+            ejecutar_neo4j()
         elif opcion == "0":
             break
         else:
