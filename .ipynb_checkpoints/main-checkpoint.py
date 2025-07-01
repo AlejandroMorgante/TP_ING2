@@ -9,11 +9,6 @@ def ejecutar_mongo():
 def ejecutar_neo4j():
     os.system("poetry run python review_neo4j.py")
 
-def caso_uso_1():
-    os.system("poetry run python -c \"from review_mongo import reservas_diarias_por_destino; reservas_diarias_por_destino()\"")
-
-def caso_uso_2():
-    os.system("poetry run python -c \"from review_mongo import tipos_alojamiento_mas_solicitados; tipos_alojamiento_mas_solicitados()\"")
 
 def caso_uso_3():
     fecha = input("Ingresá la fecha desde la cual contar (formato yyyy-mm-dd): ")
@@ -25,9 +20,7 @@ def mostrar_menu():
         print("1. Ver datos en MySQL")
         print("2. Ver datos en MongoDB")
         print("3. Ver datos en Neo4j")
-        print("4. CU1 - Cuántas reservas se realizan diariamente por destino")
-        print("5. CU2 - Qué tipos de alojamientos son más solicitados por los usuarios")
-        print("6. CU3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
+        print("4. Caso de uso 3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
         print("0. Salir")
         opcion = input("Seleccione una opción: ")
 
@@ -38,10 +31,6 @@ def mostrar_menu():
         elif opcion == "3":
             ejecutar_neo4j()
         elif opcion == "4":
-            caso_uso_1()
-        elif opcion == "5":
-            caso_uso_2()
-        elif opcion == "6":
             caso_uso_3()
         elif opcion == "0":
             break

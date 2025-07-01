@@ -35,8 +35,6 @@ def consulta_alojamientos_baratos_o_centrico():
         zona = doc.get("zona", "N/A")
         print(f"- Tipo: {tipo} | Precio: {precio} | Zona: {zona}")
 
-
-#Caso de Uso 2 - Tipo de alojamiento mas solicitado
 def tipos_alojamiento_mas_solicitados():
     client = MongoClient("mongodb://localhost:27017")
     db = client["test"]
@@ -91,47 +89,6 @@ def contar_propiedades_desde_fecha(fecha_str):
     print(f"\nCantidad de propiedades con fechaAlta desde {fecha_str}: {count}")
 
     client.close()
-
-
-#Caso de Uso 1 - Reservas diarias por destino
-def reservas_diarias_por_destino():
-    client = MongoClient("mongodb://localhost:27017")
-    db = client["test"]
-
-    print("Cantidad de reservas diarias por destino:")
-
-    pipeline = [
-        {
-            "$project": {
-                "fecha": { "$dateToString": { "format": "%Y-%m-%d", "date": "$fecha_creacion" } },
-                "destino": { "$ifNull": ["$paquete.vuelo.destino", "$vuelo.destino"] }
-            }
-        },
-        {
-            "$group": {
-                "_id": {
-                    "fecha": "$fecha",
-                    "destino": "$destino"
-                },
-                "total_reservas": { "$sum": 1 }
-            }
-        },
-        {
-            "$sort": { "_id.fecha": 1, "total_reservas": -1 }
-        }
-    ]
-
-    resultados = db.reservas.aggregate(pipeline)
-
-    for doc in resultados:
-        fecha = doc["_id"]["fecha"]
-        destino = doc["_id"]["destino"]
-        total = doc["total_reservas"]
-        print(f"- Fecha: {fecha} | Destino: {destino} | Total reservas: {total}")
-
-    client.close()
-
-
 
 if __name__ == "__main__":
     explorar_mongo()
