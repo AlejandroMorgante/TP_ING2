@@ -20,6 +20,9 @@ def caso_uso_3():
     fecha = input("Ingresá la fecha desde la cual contar (formato yyyy-mm-dd): ")
     os.system(f'poetry run python -c "from review_mongo import contar_propiedades_desde_fecha; contar_propiedades_desde_fecha(\'{fecha}\')"')
 
+def caso_uso_6():
+    os.system("poetry run python -c \"from review_mongo import consulta_alojamientos_baratos_o_centrico; consulta_alojamientos_baratos_o_centrico()\"")
+
 def mostrar_menu():
     while True:
         print("\n===== MENÚ DE CASOS DE USO =====")
@@ -29,6 +32,7 @@ def mostrar_menu():
         print("4. CU1 - Cuántas reservas se realizan diariamente por destino")
         print("5. CU2 - Qué tipos de alojamientos son más solicitados por los usuarios")
         print("6. CU3 - Cuántas propiedades han sido agregadas recientemente a la plataforma")
+        print("7. CU6 - ¿Qué tipos de alojamiento tienen precios por noche < 100 o están ubicados en zonas céntricas")
         print("0. Salir")
         opcion = input("Seleccione una opción: ")
 
@@ -44,6 +48,8 @@ def mostrar_menu():
             caso_uso_2()
         elif opcion == "6":
             caso_uso_3()
+        elif opcion == "7":
+            caso_uso_6()
         elif opcion == "0":
             break
         else:

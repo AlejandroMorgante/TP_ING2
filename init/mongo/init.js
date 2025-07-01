@@ -7,7 +7,8 @@ db.propiedades.insertMany([
     ubicacion: { ciudad: "Cartagena", pais: "Colombia" },
     fechaAlta: ISODate("2025-06-10T12:00:00Z"),
     estrellas: 4,
-    precioNoche: 150
+    precioNoche: 150,
+    zonaCentrica: true
   },
   {
     nombre: "Depto Centro Madrid",
@@ -15,7 +16,8 @@ db.propiedades.insertMany([
     ubicacion: { ciudad: "Madrid", pais: "España" },
     fechaAlta: ISODate("2025-06-15T09:30:00Z"),
     estrellas: null,
-    precioNoche: 80
+    precioNoche: 80,
+    zonaCentrica: true
   },
   {
     nombre: "Hostal Andino",
@@ -23,7 +25,8 @@ db.propiedades.insertMany([
     ubicacion: { ciudad: "Cusco", pais: "Perú" },
     fechaAlta: ISODate("2025-06-18T17:45:00Z"),
     estrellas: 2,
-    precioNoche: 25
+    precioNoche: 25,
+    zonaCentrica: false
   },
   {
     nombre: "Hostal Viejo",
@@ -31,7 +34,8 @@ db.propiedades.insertMany([
     ubicacion: { ciudad: "Cusco", pais: "Perú" },
     fechaAlta: ISODate("2010-06-18T17:45:00Z"),
     estrellas: 2,
-    precioNoche: 25
+    precioNoche: 25,
+    zonaCentrica: false
   }
 ]);
 
@@ -39,6 +43,7 @@ db.propiedades.createIndex({ fechaAlta: -1 });
 
 
 db.reservas.drop();
+
 db.reservas.insertMany([
   {
     numero_reserva: "R001",
@@ -49,12 +54,7 @@ db.reservas.insertMany([
       nombre: "Carlos Martínez",
       correo: "carlos.martinez@email.com"
     },
-    pasajeros: [
-      {
-        nombre: "Carlos Martínez",
-        pasaporte: "MX1234567"
-      }
-    ],
+    pasajeros: [{ nombre: "Carlos Martínez", pasaporte: "MX1234567" }],
     paquete: {
       descripcion: "Vacaciones en Cancún",
       precio_total: 1200,
@@ -63,7 +63,8 @@ db.reservas.insertMany([
         tipo_habitacion: "doble",
         zona: "centro",
         estrellas: 5,
-        precio: 150
+        precio: 150,
+        ubicacion: { ciudad: "Cancún", pais: "México" }
       },
       vuelo: {
         origen: "Ciudad de México",
@@ -82,12 +83,7 @@ db.reservas.insertMany([
       nombre: "Lucía Gómez",
       correo: "lucia.gomez@email.com"
     },
-    pasajeros: [
-      {
-        nombre: "Lucía Gómez",
-        pasaporte: "AR9876543"
-      }
-    ],
+    pasajeros: [{ nombre: "Lucía Gómez", pasaporte: "AR9876543" }],
     vuelo: {
       origen: "Buenos Aires",
       destino: "Bariloche",
@@ -104,18 +100,14 @@ db.reservas.insertMany([
       nombre: "Pedro López",
       correo: "pedro.lopez@email.com"
     },
-    pasajeros: [
-      {
-        nombre: "Pedro López",
-        pasaporte: "CL4567890"
-      }
-    ],
+    pasajeros: [{ nombre: "Pedro López", pasaporte: "CL4567890" }],
     hotel: {
       nombre: "Hotel del Lago",
       tipo_habitacion: "suite",
       zona: "playa",
       estrellas: 4,
-      precio: 200
+      precio: 200,
+      ubicacion: { ciudad: "Bariloche", pais: "Argentina" }
     }
   },
   {
@@ -127,9 +119,7 @@ db.reservas.insertMany([
       nombre: "Ana Torres",
       correo: "ana.torres@email.com"
     },
-    pasajeros: [
-      { nombre: "Ana Torres", pasaporte: "UY1122334" }
-    ],
+    pasajeros: [{ nombre: "Ana Torres", pasaporte: "UY1122334" }],
     paquete: {
       descripcion: "Playa y descanso",
       precio_total: 1300,
@@ -138,7 +128,8 @@ db.reservas.insertMany([
         tipo_habitacion: "estándar",
         zona: "playa",
         estrellas: 4,
-        precio: 180
+        precio: 180,
+        ubicacion: { ciudad: "Cancún", pais: "México" }
       },
       vuelo: {
         origen: "Lima",
@@ -157,9 +148,7 @@ db.reservas.insertMany([
       nombre: "Mario Fernández",
       correo: "mario.fernandez@email.com"
     },
-    pasajeros: [
-      { nombre: "Mario Fernández", pasaporte: "PE7788990" }
-    ],
+    pasajeros: [{ nombre: "Mario Fernández", pasaporte: "PE7788990" }],
     paquete: {
       descripcion: "Montaña y aventura",
       precio_total: 800,
@@ -168,7 +157,8 @@ db.reservas.insertMany([
         tipo_habitacion: "doble",
         zona: "montaña",
         estrellas: 3,
-        precio: 100
+        precio: 100,
+        ubicacion: { ciudad: "Bariloche", pais: "Argentina" }
       },
       vuelo: {
         origen: "Santiago",
@@ -187,9 +177,7 @@ db.reservas.insertMany([
       nombre: "Sofía Ramírez",
       correo: "sofia.ramirez@email.com"
     },
-    pasajeros: [
-      { nombre: "Sofía Ramírez", pasaporte: "BR6655443" }
-    ],
+    pasajeros: [{ nombre: "Sofía Ramírez", pasaporte: "BR6655443" }],
     vuelo: {
       origen: "São Paulo",
       destino: "Bariloche",
@@ -206,9 +194,7 @@ db.reservas.insertMany([
       nombre: "Laura Pérez",
       correo: "laura.perez@email.com"
     },
-    pasajeros: [
-      { nombre: "Laura Pérez", pasaporte: "MX9988776" }
-    ],
+    pasajeros: [{ nombre: "Laura Pérez", pasaporte: "MX9988776" }],
     paquete: {
       descripcion: "Vacaciones familiares en Cancún",
       precio_total: 1000,
@@ -217,7 +203,8 @@ db.reservas.insertMany([
         tipo_habitacion: "estándar",
         zona: "centro",
         estrellas: 4,
-        precio: 160
+        precio: 160,
+        ubicacion: { ciudad: "Cancún", pais: "México" }
       },
       vuelo: {
         origen: "Ciudad de México",

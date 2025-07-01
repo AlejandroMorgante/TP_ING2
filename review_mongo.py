@@ -14,24 +14,23 @@ def explorar_mongo():
 
     client.close()
 
-
+#Caso de Uso 6 - tipos de alojamiento tienen precios por noche menores a $100 o están ubicados en zonas céntricas
 def consulta_alojamientos_baratos_o_centrico():
     client = MongoClient("mongodb://localhost:27017")
     db = client["test"]
 
-    print("\nConsulta: Tipos de alojamiento con precio < 100 o en zona céntrica")
+    print("\nTipos de alojamiento con precio < 100 o en zona céntrica")
 
-    # Suponiendo que los alojamientos están en la colección "alojamientos"
-    resultados = db.alojamientos.find({
+    resultados = db.propiedades.find({
         "$or": [
-            {"precio_por_noche": {"$lt": 100}},
+            {"precioNoche": {"$lt": 100}},
             {"zona": "centrica"}
         ]
     })
 
     for doc in resultados:
-        tipo = doc.get("tipo", "Desconocido")
-        precio = doc.get("precio_por_noche", "N/A")
+        tipo = doc.get("tipoAlojamiento", "Desconocido")
+        precio = doc.get("precioNoche", "N/A")
         zona = doc.get("zona", "N/A")
         print(f"- Tipo: {tipo} | Precio: {precio} | Zona: {zona}")
 
